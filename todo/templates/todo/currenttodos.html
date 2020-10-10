@@ -1,0 +1,18 @@
+{% extends 'todo/base.html' %} {% block container %}
+<h1>%% TODOS %%</h1>
+<ol>
+  {% for todo in todos %}
+  <li>
+    <a href="{% url 'viewtodo' todo.id %}">
+      <span>
+        {% if todo.important %}<b>
+          <a href="{% url 'viewtodo' todo.id %}">{{ todo.title }}</a></b
+        >{% endif %} {{ todo.memo }} {{ todo.created|date:"jS F Y H:i" }}
+      </span></a
+    >
+  </li>
+  {% endfor %}
+</ol>
+<a href="{% url 'viewcomplitedtodos' %}"> All Compited </a>
+
+{% endblock %}

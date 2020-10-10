@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+
+  <body>
+    <div>
+      <div class="item_menu">Home</div>
+      <div class="item_menu">About</div>
+      <div class="item_menu">TODO</div>
+      <div class="item_menu">*</div>
+      <div class="item_menu">*</div>
+      <div class="item_menu">*</div>
+    </div>
+    {% if user.is_authenticated %}
+
+    <a href="{% url 'createtodo' %}">Create TODO </a><br />
+    <a href="{% url 'currenttodos' %}">TODOs Created </a><br />
+    <a href="{% url 'viewcomplitedtodos' %}">Compited TODOS</a><br />
+
+    Logged In as {{ user.username }}<br />
+
+    <form action="{% url 'logoutuser' %}" method="POST">
+      {% csrf_token %}
+      <button type="submit">Log out</button>
+    </form>
+    {% else %}
+    <a href="{% url 'singupuser' %}">Sign up </a><br />
+    <a href="{% url 'loginuser' %}">Login</a>
+    {% endif %}
+    <br />
+    {% block container %} {% endblock %}
+  </body>
+</html>

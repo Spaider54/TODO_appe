@@ -1,0 +1,14 @@
+{% extends 'todo/base.html' %} {% block container %}
+
+<h1>Hello in Creation New User File</h1>
+
+{% if error %}
+<h2 style="color: red; background-color: cornflowerblue">{{ error }}</h2>
+{% endif %}
+
+<form method="POST">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit">Sing up</button>
+</form>
+
+{% endblock %}
